@@ -1,12 +1,6 @@
-.App {
-  height: 100vh;
-  width: 100vw;
-  text-align: center;
-}
+/*--------------------General stuff---------------------*/
 
-/* -----------------------Login------------------------ */
-
-.LoginWrapper {
+.FlexCenter {
   height: 100%;
   width: 100%;
   background-color: rgba(0, 0, 255, 0.5);
@@ -15,8 +9,26 @@
   justify-content: center;
 }
 
+/* ------------------------App------------------------- */
+
+.App {
+  height: 100vh;
+  width: 100vw;
+  text-align: center;
+}
+
+/* -----------------------Login------------------------ */
+
 .LoginContainer {
   height: 400px;
+  width: 300px;
+  border: 1px solid black;
+  border-radius: 10px;
+}
+
+/*----------------------Registration---------------------*/
+.RegistrationContainer {
+  height: 600px;
   width: 300px;
   border: 1px solid black;
   border-radius: 10px;

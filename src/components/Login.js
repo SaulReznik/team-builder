@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import isEmail from 'validator/lib/isEmail';
 
 import FormField from './UI/FormField';
@@ -8,6 +9,7 @@ class Login extends React.Component {
         fields: {
             email: '',
             password: '',
+            rememberMe: '',
         },
         fieldErrors: {}
     }
@@ -50,7 +52,7 @@ class Login extends React.Component {
 
     render() {
         return(
-            <div className="LoginWrapper">
+            <div className="FlexCenter">
                 <div className="LoginContainer">
                     <h3>Login</h3>
                     <form onSubmit={this.onFormSubmit}>
@@ -72,6 +74,14 @@ class Login extends React.Component {
                             validate={val => (val ? false : 'Password Required')} //[TEMP]
                         />
 
+                        <FormField
+                            name='rememberMe'
+                            type='checkbox'
+                            value={this.state.fields.rememberMe}
+                            onChange={this.onInputChange}
+                            label='Remember Me'
+                        />
+
                         <input 
                             className='SubmitButton' 
                             type='submit' 
@@ -80,6 +90,8 @@ class Login extends React.Component {
                         />
                         
                     </form>
+
+                    <span>Not a member? <Link to='/registration'>Register</Link></span>
                 </div>
             </div>
         )

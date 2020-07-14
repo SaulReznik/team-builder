@@ -20,24 +20,43 @@ class FormField extends React.Component {
         this.props.onChange({ name, value, error });
     }
 
+    renderInput = () => {
+        switch (this.props.type) {
+            case 'password':
+                return (
+                    <input
+                        placeholder={this.props.placeholder}
+                        value={this.state.value}
+                        onChange={this.onChange}
+                        type='password'
+                    />
+                )
+            case 'checkbox':
+                return (
+                    <div>
+                        <input
+                            value={this.state.value}
+                            onChange={this.onChange}
+                            type='checkbox'
+                        />
+                        <label>{this.props.label}</label>
+                    </div>
+                )
+            default:
+                return (
+                    <input
+                        placeholder={this.props.placeholder}
+                        value={this.state.value}
+                        onChange={this.onChange}
+                    />
+                )
+        }
+    }
+
     render() {
         return (
             <div className='InputContainer'>
-                {
-                    this.props.type === 'password' ?
-                        <input
-                            placeholder={this.props.placeholder}
-                            value={this.state.value}
-                            onChange={this.onChange}
-                            type='password'
-                        />
-                        :
-                        <input
-                            placeholder={this.props.placeholder}
-                            value={this.state.value}
-                            onChange={this.onChange}
-                        />
-                }
+                {this.renderInput()}
             </div>
         );
     }
