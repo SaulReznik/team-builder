@@ -47,7 +47,7 @@ class Registration extends React.Component {
 
     onGenderSelect = e => {
         e.persist();
-        
+
         this.setState(prevState => ({
             fields: {
                 ...prevState.fields,
@@ -63,11 +63,17 @@ class Registration extends React.Component {
         const { fields, fieldErrors } = this.state;
         const errMessages = Object.keys(fieldErrors).filter((k) => fieldErrors[k]);
 
-        //If one of our fields is empty
+        //Specific validaton for each field
+        if (!fields.firstname) return true;
+        if (!fields.lastname) return true;
+        if (!fields.birthdate) return true;
+        if (+fields.jsExperience < 0) return true;
+        if (+fields.reactExperience < 0) return true;
+        if (+fields.companyId < 0) return true; //[TEMP]
         if (!fields.email) return true;
         if (!fields.password) return true;
 
-        //Or we have at least one error then the validation was failed
+        //If we have at least one error then the validation was failed
         if (errMessages.length) return true;
 
         return false;
@@ -83,7 +89,7 @@ class Registration extends React.Component {
                         name='firstname'
                         value={this.state.fields.firstname}
                         onChange={this.onInputChange}
-                        validate={val => (isEmail(val) ? false : 'First Name Required')} //[TEMP]
+                        validate={val => (val ? false : 'First Name Required')} //[TEMP]
                     />
 
                     <FormField
@@ -91,7 +97,7 @@ class Registration extends React.Component {
                         name='lastname'
                         value={this.state.fields.lastname}
                         onChange={this.onInputChange}
-                        validate={val => (isEmail(val) ? false : 'Last Name Required')} //[TEMP]
+                        validate={val => (val ? false : 'Last Name Required')} //[TEMP]
                     />
 
                     <FormField
@@ -99,7 +105,7 @@ class Registration extends React.Component {
                         name='birthdate'
                         value={this.state.fields.birthdate}
                         onChange={this.onInputChange}
-                        validate={val => (isEmail(val) ? false : 'Birth Date Required')} //[TEMP]
+                        validate={val => (val ? false : 'Birth Date Required')} //[TEMP]
                     />
                     
                     <span>Sex</span>
@@ -116,6 +122,35 @@ class Registration extends React.Component {
                             />
                         ))
                     }
+
+                    <FormField
+                        placeholder='Avatar URL'
+                        name='avatarUrl'
+                        value={this.state.fields.avatarUrl}
+                        onChange={this.onInputChange}
+                    />
+
+                    <FormField
+                        placeholder='JS Experience'
+                        name='jsExperience'
+                        value={this.state.fields.jsExperience}
+                        onChange={this.onInputChange}
+                        validate={val => (val ? false : "No negative numbers")} //[TEMP]
+                    />
+
+                    <FormField
+                        placeholder='React Experience'
+                        name='reactExperience'
+                        value={this.state.fields.reactExperience}
+                        onChange={this.onInputChange}
+                    />
+
+                    <FormField
+                        placeholder='company ID'
+                        name='companyId'
+                        value={this.state.fields.companyId}
+                        onChange={this.onInputChange}
+                    />
 
                     <FormField
                         placeholder='Email'
