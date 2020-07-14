@@ -9,7 +9,10 @@ class Registration extends React.Component {
             firstname: '',
             lastname: '',
             birthdate: '',
-            sex: ['male', 'female'],
+            sex: {
+                selected: 'male',
+                options: ['male', 'female']
+            },
             avatarUrl: '',
             jsExperience: 0,
             reactExperience: 0,
@@ -41,6 +44,20 @@ class Registration extends React.Component {
 
         this.setState({ fields, fieldErrors });
     };
+
+    onGenderSelect = e => {
+        e.persist();
+        
+        this.setState(prevState => ({
+            fields: {
+                ...prevState.fields,
+                sex: {
+                    ...prevState.fields.sex,
+                    selected: e.target.value,
+                }
+            }
+        }))
+    }
 
     validate = () => {
         const { fields, fieldErrors } = this.state;
@@ -84,6 +101,21 @@ class Registration extends React.Component {
                         onChange={this.onInputChange}
                         validate={val => (isEmail(val) ? false : 'Birth Date Required')} //[TEMP]
                     />
+                    
+                    <span>Sex</span>
+                    {
+                        this.state.fields.sex.options.map((item, index) => (
+                            <FormField
+                                key={index}
+                                type='radio'
+                                name='sex'
+                                label={item}
+                                value={item}
+                                onGenderSelect={this.onGenderSelect}
+                                isSelected={this.state.fields.sex.selected === item}
+                            />
+                        ))
+                    }
 
                     <FormField
                         placeholder='Email'

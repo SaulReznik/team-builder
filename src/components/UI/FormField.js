@@ -42,6 +42,19 @@ class FormField extends React.Component {
                         <label>{this.props.label}</label>
                     </div>
                 )
+            case 'radio':
+                return (
+                    <div>
+                        <input
+                            name={this.props.name}
+                            value={this.state.value}
+                            onChange={e => this.props.onGenderSelect(e)}
+                            type='radio'
+                            checked={this.props.isSelected}
+                        />
+                        <label>{this.props.label}</label>
+                    </div>
+                )
             default:
                 return (
                     <input
