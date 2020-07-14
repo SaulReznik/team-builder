@@ -53,6 +53,49 @@ header {
   border: 5px solid rgba(255, 255, 255, 0.582);
 }
 
+/*--------------------AccountModal----------------------*/
+
+.AccountModalContainer {
+  height: 500px;
+  width: 300px;
+  border: 1px solid black;
+  position: fixed;
+  right: 0;
+  top: 70px;
+}
+
+.AvatarModalContainer {
+  height: 300px;
+  width: 100%;
+  border: 1px solid green;
+}
+
+.AvatarModal {
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+}
+
+/*-----------------------Account-------------------------*/
+
+.AccountContainer {
+  top: 70px;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+}
+
+.AvatarColumnContainer {
+  height: 100%;
+  width: 30%;
+  border-right: 1px solid black;
+}
+
+.AvatarAccount {
+  height: 200px;
+  width: 200px;
+}
+
 /* -----------------------Login------------------------ */
 
 .LoginContainer {
