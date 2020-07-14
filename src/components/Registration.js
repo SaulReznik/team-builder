@@ -1,5 +1,6 @@
 import React from 'react';
 import isEmail from 'validator/lib/isEmail';
+import { Redirect } from 'react-router-dom';
 
 import FormField from './UI/FormField';
 
@@ -30,7 +31,7 @@ class Registration extends React.Component {
 
         //[TEMP] Just return for now while waiting for further instructions
         console.log('Validation was passed!')
-        return;
+        return <Redirect to='/'/>
     }
 
     //Getting the values, and if there's errors
@@ -84,91 +85,99 @@ class Registration extends React.Component {
             <div className="FlexCenter">
                 <div className="RegistrationContainer">
                     <h3>Registration</h3>
-                    <FormField
-                        placeholder='First name'
-                        name='firstname'
-                        value={this.state.fields.firstname}
-                        onChange={this.onInputChange}
-                        validate={val => (val ? false : 'First Name Required')} //[TEMP]
-                    />
+                    <form onSubmit={this.onFormSubmit}>
+                        <FormField
+                            placeholder='First name'
+                            name='firstname'
+                            value={this.state.fields.firstname}
+                            onChange={this.onInputChange}
+                            validate={val => (val ? false : 'First Name Required')} //[TEMP]
+                        />
 
-                    <FormField
-                        placeholder='Last name'
-                        name='lastname'
-                        value={this.state.fields.lastname}
-                        onChange={this.onInputChange}
-                        validate={val => (val ? false : 'Last Name Required')} //[TEMP]
-                    />
+                        <FormField
+                            placeholder='Last name'
+                            name='lastname'
+                            value={this.state.fields.lastname}
+                            onChange={this.onInputChange}
+                            validate={val => (val ? false : 'Last Name Required')} //[TEMP]
+                        />
 
-                    <FormField
-                        placeholder='Birth Date'
-                        name='birthdate'
-                        value={this.state.fields.birthdate}
-                        onChange={this.onInputChange}
-                        validate={val => (val ? false : 'Birth Date Required')} //[TEMP]
-                    />
-                    
-                    <span>Sex</span>
-                    {
-                        this.state.fields.sex.options.map((item, index) => (
-                            <FormField
-                                key={index}
-                                type='radio'
-                                name='sex'
-                                label={item}
-                                value={item}
-                                onGenderSelect={this.onGenderSelect}
-                                isSelected={this.state.fields.sex.selected === item}
-                            />
-                        ))
-                    }
+                        <FormField
+                            placeholder='Birth Date'
+                            name='birthdate'
+                            type='date'
+                            value={this.state.fields.birthdate}
+                            onChange={this.onInputChange}
+                            validate={val => (val ? false : 'Birth Date Required')} //[TEMP]
+                        />
+                        
+                        <span>Sex</span>
+                        {
+                            this.state.fields.sex.options.map((item, index) => (
+                                <FormField
+                                    key={index}
+                                    type='radio'
+                                    name='sex'
+                                    label={item}
+                                    value={item}
+                                    onGenderSelect={this.onGenderSelect}
+                                    isSelected={this.state.fields.sex.selected === item}
+                                />
+                            ))
+                        }
 
-                    <FormField
-                        placeholder='Avatar URL'
-                        name='avatarUrl'
-                        value={this.state.fields.avatarUrl}
-                        onChange={this.onInputChange}
-                    />
+                        <FormField
+                            placeholder='Avatar URL'
+                            name='avatarUrl'
+                            value={this.state.fields.avatarUrl}
+                            onChange={this.onInputChange}
+                        />
 
-                    <FormField
-                        placeholder='JS Experience'
-                        name='jsExperience'
-                        value={this.state.fields.jsExperience}
-                        onChange={this.onInputChange}
-                        validate={val => (val ? false : "No negative numbers")} //[TEMP]
-                    />
+                        <FormField
+                            placeholder='JS Experience'
+                            name='jsExperience'
+                            value={this.state.fields.jsExperience}
+                            onChange={this.onInputChange}
+                            validate={val => (val ? false : "No negative numbers")} //[TEMP]
+                        />
 
-                    <FormField
-                        placeholder='React Experience'
-                        name='reactExperience'
-                        value={this.state.fields.reactExperience}
-                        onChange={this.onInputChange}
-                    />
+                        <FormField
+                            placeholder='React Experience'
+                            name='reactExperience'
+                            value={this.state.fields.reactExperience}
+                            onChange={this.onInputChange}
+                        />
 
-                    <FormField
-                        placeholder='company ID'
-                        name='companyId'
-                        value={this.state.fields.companyId}
-                        onChange={this.onInputChange}
-                    />
+                        <FormField
+                            placeholder='company ID'
+                            name='companyId'
+                            value={this.state.fields.companyId}
+                            onChange={this.onInputChange}
+                        />
 
-                    <FormField
-                        placeholder='Email'
-                        name='email'
-                        value={this.state.fields.email}
-                        onChange={this.onInputChange}
-                        validate={val => (isEmail(val) ? false : 'Invalid Email')} //[TEMP]
-                    />
+                        <FormField
+                            placeholder='Email'
+                            name='email'
+                            value={this.state.fields.email}
+                            onChange={this.onInputChange}
+                            validate={val => (isEmail(val) ? false : 'Invalid Email')} //[TEMP]
+                        />
 
-                    <FormField
-                        placeholder='password'
-                        name='password'
-                        type='password'
-                        value={this.state.fields.password}
-                        onChange={this.onInputChange}
-                        validate={val => (val ? false : 'Password Required')} //[TEMP]
-                    />
+                        <FormField
+                            placeholder='password'
+                            name='password'
+                            type='password'
+                            value={this.state.fields.password}
+                            onChange={this.onInputChange}
+                            validate={val => (val ? false : 'Password Required')} //[TEMP]
+                        />
 
+                        <input 
+                            type='submit'
+                            disabled={this.validate()}
+                            value='Submit'
+                        />
+                    </form>
                 </div>
             </div>
         )

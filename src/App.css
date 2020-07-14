@@ -17,6 +17,42 @@
   text-align: center;
 }
 
+/*------------------------Header------------------------*/
+
+header {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  width: 100%;
+  height: 70px;
+  border-bottom: 1px solid black;
+  position: fixed;
+}
+
+.LogoutButtonContainer {
+  height: 100%;
+  width: 100px;
+}
+
+.AvatarHeaderContainer {
+  height: 100%;
+  width: 70px;
+  border: 1px solid pink;
+}
+
+.AvatarHeader {
+  height: 80%;
+  width: 80%;
+  border-radius: 50%;
+  border: none;
+  transition: border 0.3s;
+}
+
+.AvatarHeader:hover {
+  cursor: pointer;
+  border: 5px solid rgba(255, 255, 255, 0.582);
+}
+
 /* -----------------------Login------------------------ */
 
 .LoginContainer {

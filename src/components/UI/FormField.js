@@ -55,6 +55,15 @@ class FormField extends React.Component {
                         <label>{this.props.label}</label>
                     </div>
                 )
+            case 'date': 
+                return (
+                    <input
+                        type='date'
+                        placeholder={this.props.placeholder}
+                        value={this.state.value}
+                        onChange={this.onChange}
+                    />
+                )
             default:
                 return (
                     <input
