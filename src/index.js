@@ -2,16 +2,22 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware, combineReducers } from 'redux';
+import thunk from 'redux-thunk';
 
 import './index.css';
 import App from './App';
+import { items, itemsHaveError, itemsAreLoading } from './redux/reducers';
 
-const reducer = (state = {}, action) => {
-  return state;
-}
+const rootReducer = combineReducers({
+  items,
+  itemsHaveError,
+  itemsAreLoading
+})
 
-const store = createStore(reducer);
+const enhancer = applyMiddleware(thunk);
+
+const store = createStore(rootReducer, {}, enhancer);
 
 ReactDOM.render(
   <Router>

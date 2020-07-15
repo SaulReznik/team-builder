@@ -4,12 +4,18 @@ import { Redirect } from 'react-router-dom';
 
 import FormField from './UI/FormField';
 
+import { BASE_URL } from '../constants/baseUrl';
+
+const registerUrl = `${BASE_URL}users/register`;
+
 class Registration extends React.Component {
     state = {
         fields: {
-            firstname: '',
-            lastname: '',
-            birthdate: '',
+            email: '',
+            password: '',
+            firstName: '',
+            lastName: '',
+            birthDate: '',
             sex: {
                 selected: 'male',
                 options: ['male', 'female']
@@ -18,8 +24,7 @@ class Registration extends React.Component {
             jsExperience: 0,
             reactExperience: 0,
             companyId: 1,
-            email: '',
-            password: '',
+            
         },
         fieldErrors: {}
     }
@@ -30,8 +35,20 @@ class Registration extends React.Component {
         if (this.validate()) return;
 
         //[TEMP] Just return for now while waiting for further instructions
-        console.log('Validation was passed!')
-        return <Redirect to='/'/>
+        console.log('Validation was passed!');
+
+        const validData = JSON.stringify({
+            ...this.state.fields,
+            sex: this.state.fields.sex.selected,
+        });
+
+        fetch(registerUrl, {
+            method: 'POST',
+            body: validData
+        })
+        .then(response => response.json())
+        .then(json => console.log(json))
+        //return <Redirect to='/'/>
     }
 
     //Getting the values, and if there's errors
@@ -65,9 +82,9 @@ class Registration extends React.Component {
         const errMessages = Object.keys(fieldErrors).filter((k) => fieldErrors[k]);
 
         //Specific validaton for each field
-        if (!fields.firstname) return true;
-        if (!fields.lastname) return true;
-        if (!fields.birthdate) return true;
+        if (!fields.firstName) return true;
+        if (!fields.lastName) return true;
+        if (!fields.birthDate) return true;
         if (+fields.jsExperience < 0) return true;
         if (+fields.reactExperience < 0) return true;
         if (+fields.companyId < 0) return true; //[TEMP]
@@ -81,6 +98,7 @@ class Registration extends React.Component {
     };
 
     render() {
+        console.log(registerUrl);
         return(
             <div className="FlexCenter">
                 <div className="RegistrationContainer">
@@ -88,25 +106,25 @@ class Registration extends React.Component {
                     <form onSubmit={this.onFormSubmit}>
                         <FormField
                             placeholder='First name'
-                            name='firstname'
-                            value={this.state.fields.firstname}
+                            name='firstName'
+                            value={this.state.fields.firstName}
                             onChange={this.onInputChange}
                             validate={val => (val ? false : 'First Name Required')} //[TEMP]
                         />
 
                         <FormField
                             placeholder='Last name'
-                            name='lastname'
-                            value={this.state.fields.lastname}
+                            name='lastName'
+                            value={this.state.fields.lastName}
                             onChange={this.onInputChange}
                             validate={val => (val ? false : 'Last Name Required')} //[TEMP]
                         />
 
                         <FormField
                             placeholder='Birth Date'
-                            name='birthdate'
+                            name='birthDate'
                             type='date'
-                            value={this.state.fields.birthdate}
+                            value={this.state.fields.birthDate}
                             onChange={this.onInputChange}
                             validate={val => (val ? false : 'Birth Date Required')} //[TEMP]
                         />
