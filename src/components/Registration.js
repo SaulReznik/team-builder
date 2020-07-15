@@ -111,21 +111,23 @@ class Registration extends React.Component {
                             validate={val => (val ? false : 'Birth Date Required')} //[TEMP]
                         />
                         
-                        <span>Sex</span>
-                        {
-                            this.state.fields.sex.options.map((item, index) => (
-                                <FormField
-                                    key={index}
-                                    type='radio'
-                                    name='sex'
-                                    label={item}
-                                    value={item}
-                                    onGenderSelect={this.onGenderSelect}
-                                    isSelected={this.state.fields.sex.selected === item}
-                                />
-                            ))
-                        }
-
+                        <div className='SexContainer'>
+                            <span>Sex</span>
+                            {
+                                this.state.fields.sex.options.map((item, index) => (
+                                    <FormField
+                                        key={index}
+                                        type='radio'
+                                        name='sex'
+                                        label={item}
+                                        value={item}
+                                        onGenderSelect={this.onGenderSelect}
+                                        isSelected={this.state.fields.sex.selected === item}
+                                    />
+                                ))
+                            }
+                        </div>
+                        
                         <FormField
                             placeholder='Avatar URL'
                             name='avatarUrl'
@@ -136,6 +138,7 @@ class Registration extends React.Component {
                         <FormField
                             placeholder='JS Experience'
                             name='jsExperience'
+                            type='number'
                             value={this.state.fields.jsExperience}
                             onChange={this.onInputChange}
                             validate={val => (val ? false : "No negative numbers")} //[TEMP]
@@ -144,6 +147,7 @@ class Registration extends React.Component {
                         <FormField
                             placeholder='React Experience'
                             name='reactExperience'
+                            type='number'
                             value={this.state.fields.reactExperience}
                             onChange={this.onInputChange}
                         />
@@ -151,6 +155,7 @@ class Registration extends React.Component {
                         <FormField
                             placeholder='company ID'
                             name='companyId'
+                            type='number'
                             value={this.state.fields.companyId}
                             onChange={this.onInputChange}
                         />
@@ -172,7 +177,8 @@ class Registration extends React.Component {
                             validate={val => (val ? false : 'Password Required')} //[TEMP]
                         />
 
-                        <input 
+                        <input
+                            className='RegistrationSubmit'
                             type='submit'
                             disabled={this.validate()}
                             value='Submit'

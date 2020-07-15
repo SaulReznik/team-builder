@@ -82,16 +82,18 @@ class Login extends React.Component {
                             label='Remember Me'
                         />
 
-                        <input 
-                            className='SubmitButton' 
-                            type='submit' 
-                            disabled={this.validate()} 
-                            value='Submit'
-                        />
-                        
+                        <Link to='/'>
+                            <input
+                                className='LoginSubmit'
+                                type='submit'
+                                disabled={this.validate()}
+                                value='Submit'
+                            />
+                        </Link>
+
                     </form>
 
-                    <span>Not a member? <Link to='/registration'>Register</Link></span>
+                    <span className='NotAMember'>Not a member? <Link to='/registration'>Register</Link></span>
                 </div>
             </div>
         )
