@@ -1,27 +1,29 @@
-export function itemsHaveError(bool) {
+// --------------------Companies actions---------------//
+
+export function companiesHaveError(bool) {
     return {
-        type: 'ITEMS_HAVE_ERROR',
+        type: 'COMPANIES_HAVE_ERROR',
         hasError: bool
     };
 }
 
-export function itemsAreLoading(bool) {
+export function companiesAreLoading(bool) {
     return {
-        type: 'ITEMS_ARE_LOADING',
+        type: 'COMPANIES_ARE_LOADING',
         isLoading: bool
     };
 }
 
-export function itemsFetchDataSuccess(items) {
+export function companiesFetchDataSuccess(companies) {
     return {
-        type: 'ITEMS_FETCH_DATA_SUCCESS',
-        items
+        type: 'COMPANIES_FETCH_DATA_SUCCESS',
+        companies
     };
 }
 
-export function itemsFetchData(url) {
+export function companiesFetchData(url) {
     return (dispatch) => {
-        dispatch(itemsAreLoading(true));
+        dispatch(companiesAreLoading(true));
 
         fetch(url)
             .then((response) => {
@@ -29,11 +31,11 @@ export function itemsFetchData(url) {
                     throw Error(response.statusText);
                 }
 
-                dispatch(itemsAreLoading(false));
-
+                dispatch(companiesAreLoading(false));
                 return response;
             })
-            .then((response) => dispatch(itemsFetchDataSuccess(response.data)))
-            .catch(() => dispatch(itemsHaveError(true)));
+            .then(response => response.json())
+            .then((json) => dispatch(companiesFetchDataSuccess(json)))
+            .catch(() => dispatch(companiesHaveError(true)));
     };
 }
