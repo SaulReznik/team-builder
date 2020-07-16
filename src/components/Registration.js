@@ -86,9 +86,9 @@ class Registration extends React.Component {
         if (!fields.firstName) return true;
         if (!fields.lastName) return true;
         if (!fields.birthDate) return true;
-        if (+fields.jsExperience < 0) return true;
-        if (+fields.reactExperience < 0) return true;
-        if (+fields.companyId < 0) return true; //[TEMP]
+        if (fields.jsExperience < 0) return true;
+        if (fields.reactExperience < 0) return true;
+        if (fields.companyId < 0) return true; //[TEMP]
         if (!fields.email) return true;
         if (!fields.password) return true;
 

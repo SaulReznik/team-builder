@@ -18,7 +18,7 @@ class Header extends React.Component{
             <div className='HeaderWrapper'>
                 <header>
                     <div className='LogoutButtonContainer FlexCenter'>
-                        <Link to='/login'>Logout</Link>
+                        <Link className='LogoutLink' to='/login'>Logout</Link>
                     </div>
                     <div className='AvatarHeaderContainer FlexCenter'>
                         <img onClick={this.toggleModal} className='AvatarHeader' src={avatar} />

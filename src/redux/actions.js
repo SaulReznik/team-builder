@@ -1,15 +1,15 @@
 // --------------------Companies actions---------------//
 
-export function companiesHaveError(bool) {
+export function dataHaveError(bool) {
     return {
-        type: 'COMPANIES_HAVE_ERROR',
+        type: 'DATA_HAVE_ERROR',
         hasError: bool
     };
 }
 
-export function companiesAreLoading(bool) {
+export function dataIsLoading(bool) {
     return {
-        type: 'COMPANIES_ARE_LOADING',
+        type: 'DATA_IS_LOADING',
         isLoading: bool
     };
 }
@@ -23,7 +23,7 @@ export function companiesFetchDataSuccess(companies) {
 
 export function companiesFetchData(url) {
     return (dispatch) => {
-        dispatch(companiesAreLoading(true));
+        dispatch(dataIsLoading(true));
 
         fetch(url)
             .then((response) => {
@@ -31,11 +31,11 @@ export function companiesFetchData(url) {
                     throw Error(response.statusText);
                 }
                 
-                dispatch(companiesAreLoading(false));
+                dispatch(dataIsLoading(false));
                 return response;
             })
             .then(response => response.json())
             .then((json) => dispatch(companiesFetchDataSuccess(json)))
-            .catch(() => dispatch(companiesHaveError(true)));
+            .catch(() => dispatch(dataHaveError(true)));
     };
 }

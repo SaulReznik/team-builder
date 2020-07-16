@@ -13,12 +13,10 @@ class Account extends React.Component {
                         <img className='AvatarAccount' src={avatar} />
                     </div>
                     <div className='UserInfoColumn'>
-                        <span>Robert Hovhannisyan</span>
-                        <span>Birth Date: 06-12-1997</span>
-                        <span>Male</span>
-                        <span>JS Experience: 30 months</span>
-                        <span>React Experience: 18 months</span>
-                        <span>Company: PicsArt</span>
+                        <div className='UserInfoContainer'>
+                            <span className='UserInfoLabel'>First Name: </span>
+                            <span className='UserInfoValue'>Robert Hovhannisyan</span>
+                        </div>
                     </div>
                 </div>
             </>

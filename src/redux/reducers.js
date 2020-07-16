@@ -1,6 +1,6 @@
-export function companiesHaveError(state = false, action) {
+export function dataHaveError(state = false, action) {
     switch (action.type) {
-        case 'COMPANIES_HAVE_ERROR':
+        case 'DATA_HAVE_ERROR':
             return action.hasError;
 
         default:
@@ -8,9 +8,9 @@ export function companiesHaveError(state = false, action) {
     }
 }
 
-export function companiesAreLoading(state = false, action) {
+export function dataIsLoading(state = false, action) {
     switch (action.type) {
-        case 'COMPANIES_ARE_LOADING':
+        case 'DATA_IS_LOADING':
             return action.isLoading;
 
         default:

@@ -8,12 +8,12 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 
 import './index.css';
 import App from './App';
-import { companies, companiesHaveError, companiesAreLoading } from './redux/reducers';
+import { companies, dataHaveError, dataIsLoading } from './redux/reducers';
 
 const rootReducer = combineReducers({
   companies,
-  companiesHaveError,
-  companiesAreLoading
+  dataHaveError,
+  dataIsLoading
 })
 
 const enhancer = applyMiddleware(thunk);

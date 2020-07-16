@@ -36,8 +36,8 @@ class App extends React.Component{
 
 const mapStateToProps = state => ({
   companies: state.companies,
-  hasError: state.companiesHaveError,
-  isLoading: state.companiesAreLoading
+  hasError: state.dataHaveError,
+  isLoading: state.dataIsLoading
 })
 
 const mapDispatchToProps = dispatch => ({
