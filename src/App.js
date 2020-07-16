@@ -13,10 +13,14 @@ import { BASE_URL } from './constants/baseUrl';
 
 class App extends React.Component{
   componentDidMount() {
-    this.props.fetchCompanies(`${BASE_URL}companies`)
+    this.props.fetchCompanies(`${BASE_URL}companies`);
   }
 
   render() {
+    if (this.props.hasError) return <h1>Sorry, something went wrong...</h1>;
+
+    if (this.props.isLoading) return <h1>Loading...</h1>;
+
     return (
       <div className="App">
         <Switch>
@@ -30,11 +34,14 @@ class App extends React.Component{
   }
 }
 
+const mapStateToProps = state => ({
+  companies: state.companies,
+  hasError: state.companiesHaveError,
+  isLoading: state.companiesAreLoading
+})
 
-const mapDispatchToProps = (dispatch) => {
-  return {
+const mapDispatchToProps = dispatch => ({
     fetchCompanies: url => dispatch(companiesFetchData(url))
-  };
-}
+});
 
-export default connect(null, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);

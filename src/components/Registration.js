@@ -24,7 +24,6 @@ class Registration extends React.Component {
             jsExperience: 0,
             reactExperience: 0,
             companyId: 1,
-            
         },
         fieldErrors: {}
     }
@@ -41,6 +40,8 @@ class Registration extends React.Component {
             ...this.state.fields,
             sex: this.state.fields.sex.selected,
         });
+
+        console.log(typeof this.state.fields.companyId, validData);
 
         fetch(registerUrl, {
             method: 'POST',
@@ -98,7 +99,6 @@ class Registration extends React.Component {
     };
 
     render() {
-        console.log(registerUrl);
         return(
             <div className="FlexCenter">
                 <div className="RegistrationContainer">

@@ -21,6 +21,8 @@ export function companiesAreLoading(state = false, action) {
 export function companies(state = [], action) {
     switch (action.type) {
         case 'COMPANIES_FETCH_DATA_SUCCESS':
+            localStorage.setItem('companies', JSON.stringify(action.companies));
+            
             return action.companies;
 
         default:
