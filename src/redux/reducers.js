@@ -1,3 +1,5 @@
+import { userLoginSuccess } from "./actions";
+
 export function dataHaveError(state = false, action) {
     switch (action.type) {
         case 'DATA_HAVE_ERROR':
@@ -25,6 +27,15 @@ export function companies(state = [], action) {
             
             return action.companies;
 
+        default:
+            return state;
+    }
+}
+
+export function userLogin(state = {}, action) {
+    switch (action.type) {
+        case 'USER_LOGIN_SUCCESS':
+            return action.user;
         default:
             return state;
     }

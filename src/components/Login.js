@@ -1,10 +1,12 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
 import isEmail from 'validator/lib/isEmail';
 
 import FormField from './UI/FormField';
 
 import { BASE_URL } from '../constants/baseUrl';
+import { userLoginSuccess } from '../redux/actions';
 
 const loginUrl = `${BASE_URL}users/login`;
 
@@ -18,6 +20,8 @@ class Login extends React.Component {
         fieldErrors: {}
     }
 
+
+
     onLoginSubmit = e => {
         e.preventDefault();
         //If validation is not passed then don't submit
@@ -28,7 +32,7 @@ class Login extends React.Component {
             password: this.state.fields.password
         });
         
-        console.log(validData);
+        //TODO: remember me section and logic
         fetch(loginUrl, {
             headers: {
                 'Content-Type': 'application/json'
@@ -36,8 +40,12 @@ class Login extends React.Component {
             method: 'POST',
             body: validData
         })
-        .then(res => console.log(res.json()))
+        .then(res => res.json())
+        .then(user => this.props.userLogin(user))
+        .then(res => this.props.history.push('/'))
     }
+
+
 
     //Getting the values, and if there's errors
     //Than that errors we will keep in our state to for further validation
@@ -50,6 +58,8 @@ class Login extends React.Component {
 
         this.setState({ fields, fieldErrors });
     };
+
+
 
     validate = () => {
         const { fields, fieldErrors } = this.state;
@@ -114,4 +124,10 @@ class Login extends React.Component {
     }
 }
 
-export default Login;
+const mapDispatchToProps = dispatch => {
+    return {
+        userLogin: user => dispatch(userLoginSuccess(user))
+    }
+}
+
+export default connect(null, mapDispatchToProps)(withRouter(Login));

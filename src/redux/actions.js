@@ -39,3 +39,10 @@ export function companiesFetchData(url) {
             .catch(() => dispatch(dataHaveError(true)));
     };
 }
+
+export function userLoginSuccess(user) {
+    return {
+        type: 'USER_LOGIN_SUCCESS',
+        user
+    }
+}
