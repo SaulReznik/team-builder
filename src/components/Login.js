@@ -6,7 +6,7 @@ import FormField from './UI/FormField';
 
 import { BASE_URL } from '../constants/baseUrl';
 
-const loginUrl = `${BASE_URL}users/register`;
+const loginUrl = `${BASE_URL}users/login`;
 
 class Login extends React.Component {
     state = {
@@ -28,12 +28,13 @@ class Login extends React.Component {
             password: this.state.fields.password
         });
         
+        console.log(validData);
         fetch(loginUrl, {
-           method: 'POST',
-           headers: {
-               'Content-Type': 'application/json'
-           },
-           body: validData
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            method: 'POST',
+            body: validData
         })
         .then(res => console.log(res.json()))
     }
@@ -96,14 +97,13 @@ class Login extends React.Component {
                             label='Remember Me'
                         />
 
-                        <Link to='/'>
-                            <input
-                                className='LoginSubmit'
-                                type='submit'
-                                disabled={this.validate()}
-                                value='Submit'
-                            />
-                        </Link>
+                        
+                        <input
+                            className='LoginSubmit'
+                            type='submit'
+                            disabled={this.validate()}
+                            value='Submit'
+                        />
 
                     </form>
 

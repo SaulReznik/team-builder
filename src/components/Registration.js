@@ -1,6 +1,6 @@
 import React from 'react';
 import isEmail from 'validator/lib/isEmail';
-import { Redirect } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 import FormField from './UI/FormField';
 
@@ -52,11 +52,7 @@ class Registration extends React.Component {
             },
             body: validData
         })
-        .then((response) => {
-            if (response.status === 200){
-                return <Redirect to='/login' />
-            }
-        })
+        .then((response) => this.props.history.push('/login'))
     }
 
     //Getting the values, and if there's errors
@@ -216,4 +212,4 @@ class Registration extends React.Component {
     }
 }
 
-export default Registration;
+export default withRouter(Registration);
