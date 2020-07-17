@@ -25,15 +25,15 @@ class FormField extends React.Component {
             case 'password':
                 return (
                     <div>
-                        <div className='ErrorMessageContainer'>
-                            <span className='ErrorMessage'>{this.state.error}</span>
-                        </div>
                         <input
                             placeholder={this.props.placeholder}
                             value={this.state.value}
                             onChange={this.onChange}
                             type='password'
                         />
+                        <div className='ErrorMessageContainer'>
+                            <span className='ErrorMessage'>{this.state.error}</span>
+                        </div>
                     </div>
                 )
             case 'checkbox':
@@ -63,44 +63,44 @@ class FormField extends React.Component {
             case 'date': 
                 return (
                     <div>
-                        <div className='ErrorMessageContainer'>
-                            <span className='ErrorMessage'>{this.state.error}</span>
-                        </div>
                         <input
                             type='date'
                             placeholder={this.props.placeholder}
                             value={this.state.value}
                             onChange={this.onChange}
                         />
+                        <div className='ErrorMessageContainer'>
+                            <span className='ErrorMessage'>{this.state.error}</span>
+                        </div>
                     </div>
                 )
             case 'number':
                 return (
                     <div>
-                        <div className='ErrorMessageContainer'>
-                            <span className='ErrorMessage'>{this.state.error}</span>
-                        </div>
                         <input
                             type='number'
                             placeholder={this.props.placeholder}
                             value={this.state.value}
                             onChange={this.onChange}
                         />
+                        <div className='ErrorMessageContainer'>
+                            <span className='ErrorMessage'>{this.state.error}</span>
+                        </div>
                     </div>
 
                 )
             default:
                 return (
                     <div>
-                        <div className='ErrorMessageContainer'>
-                            <span className='ErrorMessage'>{this.state.error}</span>
-                        </div>
                         <input
                             className='FormTextInput'
                             placeholder={this.props.placeholder}
                             value={this.state.value}
                             onChange={this.onChange}
                         />
+                        <div className='ErrorMessageContainer'>
+                            <span className='ErrorMessage'>{this.state.error}</span>
+                        </div>
                     </div>
                 )
         }

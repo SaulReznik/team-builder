@@ -7,7 +7,6 @@ import FormField from './UI/FormField';
 import { BASE_URL } from '../constants/baseUrl';
 
 const registerUrl = `${BASE_URL}users/register`;
-
 class Registration extends React.Component {
     state = {
         fields: {
@@ -38,6 +37,8 @@ class Registration extends React.Component {
 
         const validData = JSON.stringify({
             ...this.state.fields,
+            jsExperience: +this.state.fields.jsExperience,
+            reactExperience: +this.state.fields.reactExperience,
             sex: this.state.fields.sex.selected,
         });
 
@@ -45,11 +46,17 @@ class Registration extends React.Component {
 
         fetch(registerUrl, {
             method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
             body: validData
         })
-        .then(response => response.json())
-        .then(json => console.log(json))
-        //return <Redirect to='/'/>
+        .then((response) => {
+            if (response.status === 200){
+                return <Redirect to='/login' />
+            }
+        })
     }
 
     //Getting the values, and if there's errors
@@ -194,7 +201,8 @@ class Registration extends React.Component {
                             onChange={this.onInputChange}
                             validate={val => (val ? false : 'Password Required')} //[TEMP]
                         />
-
+                        
+                        <span className='AllFieldWarning'>Please fill all fields</span>
                         <input
                             className='RegistrationSubmit'
                             type='submit'

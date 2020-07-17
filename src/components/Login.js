@@ -4,6 +4,10 @@ import isEmail from 'validator/lib/isEmail';
 
 import FormField from './UI/FormField';
 
+import { BASE_URL } from '../constants/baseUrl';
+
+const loginUrl = `${BASE_URL}users/register`;
+
 class Login extends React.Component {
     state = {
         fields: {
@@ -14,14 +18,24 @@ class Login extends React.Component {
         fieldErrors: {}
     }
 
-    onFormSubmit = e => {
+    onLoginSubmit = e => {
         e.preventDefault();
         //If validation is not passed then don't submit
         if (this.validate()) return;
+
+        const validData = JSON.stringify({
+            email: this.state.fields.email,
+            password: this.state.fields.password
+        });
         
-        //[TEMP] Just return for now while waiting for further instructions
-        console.log('Validation was passed!')
-        return;
+        fetch(loginUrl, {
+           method: 'POST',
+           headers: {
+               'Content-Type': 'application/json'
+           },
+           body: validData
+        })
+        .then(res => console.log(res.json()))
     }
 
     //Getting the values, and if there's errors
@@ -55,7 +69,7 @@ class Login extends React.Component {
             <div className="FlexCenter">
                 <div className="LoginContainer">
                     <h3>Login</h3>
-                    <form onSubmit={this.onFormSubmit}>
+                    <form onSubmit={this.onLoginSubmit}>
 
                         <FormField
                             placeholder='Email'
