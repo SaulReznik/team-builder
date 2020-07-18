@@ -69,3 +69,28 @@ export function userLogout(url) {
         dispatch(userLogoutSuccess());
     }
 }
+
+//----------------------------Topics--------------------------//
+
+export function topicsFetchDataSuccess(topics) {
+    return {
+        type: 'TOPICS_FETCH_DATA_SUCCESS',
+        topics
+    }
+}
+
+export function topicsFetchData(url) {
+    return dispatch => {
+
+        fetch(url, {
+            headers: {
+                'token': localStorage.getItem('userToken')
+            }
+        })
+            .then((response) => {
+                return response;
+            })
+            .then(response => response.json())
+            .then((json) => dispatch(topicsFetchDataSuccess(json)))
+    };
+}

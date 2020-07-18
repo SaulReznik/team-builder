@@ -1,5 +1,5 @@
 import React from 'react';
-import { withRouter } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import AccountModal from './AccountModal';
@@ -26,6 +26,10 @@ class Header extends React.Component{
         return(
             <div className='HeaderWrapper'>
                 <header>
+                    <div>
+                        <Link to='/topics'>Topics</Link>
+                        <Link to='/projects'>Projects</Link>
+                    </div>
                     <div className='LogoutButtonContainer FlexCenter'>
                         <button onClick={this.logout} className='LogoutLink' to='/login'>Logout</button>
                     </div>
