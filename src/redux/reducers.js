@@ -1,4 +1,4 @@
-import { userLoginSuccess } from "./actions";
+
 
 export function dataHaveError(state = false, action) {
     switch (action.type) {
@@ -35,8 +35,20 @@ export function companies(state = [], action) {
 export function userLogin(state = {}, action) {
     switch (action.type) {
         case 'USER_LOGIN_SUCCESS':
+            localStorage.setItem('userToken', action.user.token);
             return action.user;
+        case 'USER_LOGOUT':
+            localStorage.removeItem('userToken');
+            return {}
         default:
             return state;
     }
 }
+
+// export function userLogout(state = store.userLogin, action) {
+//     switch (action.type) {
+        
+//         default:
+//             return state;
+//     }
+// }

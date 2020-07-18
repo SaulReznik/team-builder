@@ -1,8 +1,10 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import AccountModal from './AccountModal';
 import avatar from '../avatar.png';
+import { userLogout } from '../redux/actions';
 
 class Header extends React.Component{
     state = {
@@ -13,12 +15,17 @@ class Header extends React.Component{
         this.setState({isModalOpen: !this.state.isModalOpen})
     }
 
+    logout = () => {
+        this.props.logout();
+        return this.props.history.push('/login');
+    }
+
     render() {
         return(
             <div className='HeaderWrapper'>
                 <header>
                     <div className='LogoutButtonContainer FlexCenter'>
-                        <Link className='LogoutLink' to='/login'>Logout</Link>
+                        <button onClick={this.logout} className='LogoutLink' to='/login'>Logout</button>
                     </div>
                     <div className='AvatarHeaderContainer FlexCenter'>
                         <img onClick={this.toggleModal} className='AvatarHeader' src={avatar} />
@@ -30,4 +37,10 @@ class Header extends React.Component{
     }
 }
 
-export default Header;
+const mapDispatchToProps = dispatch => {
+    return {
+        logout: () => dispatch(userLogout())
+    }
+}
+
+export default connect(null, mapDispatchToProps)(withRouter(Header));
