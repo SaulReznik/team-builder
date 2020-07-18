@@ -9,6 +9,7 @@ import Registration from './components/Registration';
 import Account from './components/Account';
 import { companiesFetchData } from './redux/actions';
 
+import PrivateRoute from './components/HOC/PrivateRoute';
 import { BASE_URL } from './constants/baseUrl';
 
 class App extends React.Component{
@@ -24,10 +25,10 @@ class App extends React.Component{
     return (
       <div className="App">
         <Switch>
-          <Route exact path="/" render={props => <Home {...props} /> } />
+          <PrivateRoute exact path="/" component={<Home /> } />
           <Route exact path="/login" render={props => <Login {...props} />} />
           <Route exact path="/registration" render={props => <Registration {...props} />} />
-          <Route exact path="/account" render={props => <Account {...props} />} />
+          <PrivateRoute exact path="/account" component={<Account />} />
         </Switch>
       </div>
     );

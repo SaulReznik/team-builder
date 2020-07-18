@@ -1,5 +1,3 @@
-
-
 export function dataHaveError(state = false, action) {
     switch (action.type) {
         case 'DATA_HAVE_ERROR':
@@ -44,11 +42,3 @@ export function userLogin(state = {}, action) {
             return state;
     }
 }
-
-// export function userLogout(state = store.userLogin, action) {
-//     switch (action.type) {
-        
-//         default:
-//             return state;
-//     }
-// }

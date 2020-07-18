@@ -40,6 +40,8 @@ export function companiesFetchData(url) {
     };
 }
 
+//------------------------------Login actions----------------------//
+
 export function userLoginSuccess(user) {
     return {
         type: 'USER_LOGIN_SUCCESS',
