@@ -6,6 +6,8 @@ import AccountModal from './AccountModal';
 import avatar from '../avatar.png';
 import { userLogout } from '../redux/actions';
 
+import { BASE_URL } from '../constants/baseUrl';
+
 class Header extends React.Component{
     state = {
         isModalOpen: false,
@@ -39,7 +41,7 @@ class Header extends React.Component{
 
 const mapDispatchToProps = dispatch => {
     return {
-        logout: () => dispatch(userLogout())
+        logout: () => dispatch(userLogout(`${BASE_URL}users/logout`))
     }
 }
 

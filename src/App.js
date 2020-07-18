@@ -25,10 +25,10 @@ class App extends React.Component{
     return (
       <div className="App">
         <Switch>
-          <PrivateRoute exact path="/" component={<Home /> } />
+          <PrivateRoute exact path="/" component={() => <Home /> } />
           <Route exact path="/login" render={props => <Login {...props} />} />
           <Route exact path="/registration" render={props => <Registration {...props} />} />
-          <PrivateRoute exact path="/account" component={<Account />} />
+          <PrivateRoute exact path="/account" component={() => <Account />} />
         </Switch>
       </div>
     );

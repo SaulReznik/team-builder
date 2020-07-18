@@ -49,8 +49,23 @@ export function userLoginSuccess(user) {
     }
 }
 
-export function userLogout() {
+export function userLogoutSuccess() {
     return {
         type: 'USER_LOGOUT'
+    }
+}
+
+export function userLogout(url) {
+    return dispatch => {
+        
+        fetch(url, {
+            headers: {
+                'token': localStorage.getItem('userToken'),
+                'Content-Type': 'application/json'
+            },
+            method: 'GET'
+        })
+
+        dispatch(userLogoutSuccess());
     }
 }
