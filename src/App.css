@@ -415,8 +415,83 @@ input::-webkit-inner-spin-button {
   cursor: not-allowed;
 }
 
+/* -----------------------------Projects------------------------- */
+
 .ProjectsContainer {
+  padding-top: 10px;
   top: 70px;
   height: 100%;
   position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.ProjectContainer {
+  margin: 10px 0;
+  height: 150px;
+  width: 400px;
+  display: flex;
+  border: 1px solid black;
+}
+
+.ProjectInfoContainer {
+  height: 150px;
+  width: 300px;
+  border: 1px solid black;
+}
+
+.ProjectTitle {
+  font-size: 1.2rem;
+}
+
+.ProjectDescription {
+  font-size: 1rem;
+}
+
+.ProjectUpvoteContainer {
+  height: 150px;
+  width: 100px;
+  border: 1px solid black;
+}
+
+.UpvoteContainer {
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.Upvote {
+  width: 0; 
+  height: 0; 
+  border-left: 25px solid transparent;
+  border-right: 25px solid transparent;
+  border-bottom: 25px solid rgb(199, 199, 199);
+}
+
+.UpvoteChecked {
+  width: 0; 
+  height: 0; 
+  border-left: 25px solid transparent;
+  border-right: 25px solid transparent;
+  border-bottom: 25px solid orange;
+}
+
+.Upvote:hover {
+  cursor: pointer;
+}
+
+.UpvoteChecked:hover {
+  cursor: pointer;
+}
+
+.UpvoteCountContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.UpvoteCount {
+  font-size: 2rem;
 }
