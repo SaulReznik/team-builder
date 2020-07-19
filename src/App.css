@@ -9,6 +9,10 @@
   background-color: rgba(30, 128, 239, 0.534);
 }
 
+button:hover {
+  cursor: pointer;
+}
+
 /* ------------------------App------------------------- */
 
 .App {
@@ -331,4 +335,73 @@ input::-webkit-inner-spin-button {
   display: block;
   font-size: 0.9rem;
   color: rgb(243, 44, 44);
+}
+
+/* ------------------------Topics----------------------- */
+
+.TopicInputContainer {
+  padding: 20px 0; 
+}
+
+.TopicInput {
+  width: 200px;
+  padding: 3px 2px;
+  font-size: 1rem;
+  border: 1px solid grey;
+  border-right: none;
+  border-radius: 10px 0 0px 10px;
+}
+
+.TopicAddButton {
+  padding: 4px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 0 10px 10px 0; 
+  background-color: #1E80EF;
+}
+
+.TopicsListContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.TopicContainer {
+  display: flex;
+  margin: 10px 0;
+}
+
+.TopicTitleContainer {
+  width: 250px;
+  height: 25px;
+  overflow: hidden;
+  border: 1px solid black;
+}
+
+.LikeButton {
+  width: 60px;
+  padding: 3px 8px;
+  font-size: 1rem;
+  background-color: white;
+  border: 1px solid black;
+}
+
+.BlueLikeBackground {
+  background-color: #1E80EF;
+  color: white;
+}
+
+.DeleteButton {
+  padding: 3px 8px;
+  font-size: 1rem;
+  border: none;
+  background-color: red;
+  color: white;
+  border: 1px solid black;
+}
+
+.DeleteButton[disabled] {
+  background-color: grey;
+  cursor: not-allowed;
 }

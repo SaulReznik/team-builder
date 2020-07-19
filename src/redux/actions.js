@@ -94,3 +94,25 @@ export function topicsFetchData(url) {
             .then((json) => dispatch(topicsFetchDataSuccess(json)))
     };
 }
+
+export function topicDeleteSuccess(topics, id) {
+    return {
+        type: 'TOPIC_DELETE',
+        topics,
+        id
+    }
+}
+
+export function topicDelete(url, topics, id) {
+    return dispatch => {
+
+        fetch(`${url}/${id}`, {
+            headers: {
+                'token': localStorage.getItem('userToken')
+            },
+            method: 'DELETE'
+        })
+        
+        dispatch(topicDeleteSuccess(topics, id));
+    }
+}

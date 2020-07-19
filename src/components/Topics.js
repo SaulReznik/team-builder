@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { topicsFetchData } from '../redux/actions';
+import { topicsFetchData, topicDelete } from '../redux/actions';
 import { BASE_URL } from '../constants/baseUrl';
 
 const topicsUrl = `${BASE_URL}topics`;
@@ -34,17 +34,39 @@ class Topics extends React.Component {
         this.setState({topic: e.target.value})
     }
 
+    onLike = e => {
+        const button = e.target;
+        if (button.className === "LikeButton") {
+            button.className += " BlueLikeBackground";
+            button.innerText = "Liked"
+        } else {
+            button.className = "LikeButton";
+            button.innerText = "Like";
+        }
+    }
+
     render() {
-        
         return(
             <div>
                 <div className="TopicInputContainer">
-                    <input onChange={e => this.onTopicChange(e)} value={this.state.topicInput} />
-                    <button onClick={this.addTopic}>Add Topic</button>
+                    <input className="TopicInput" onChange={e => this.onTopicChange(e)} value={this.state.topicInput} />
+                    <button className="TopicAddButton" onClick={this.addTopic}>Add Topic</button>
                 </div>
                 <div className="TopicsListContainer">
                     {this.props.topics.map((topic, index) => (
-                        <h1 key={index}>{topic.title}</h1>
+                        <div key={index} className='TopicContainer'>
+                            <div className='TopicTitleContainer'>
+                                <span>{topic.title}</span>
+                            </div>
+                            <div className='TopicsButtonsContainer'>
+                                <button onClick={e => this.onLike(e)} className='LikeButton'>Like</button>
+                                <button 
+                                onClick={() => this.props.deleteTopic(topicsUrl, this.props.topics, topic.id)} 
+                                disabled={!topic.canDelete} 
+                                className='DeleteButton'
+                                >Delete</button>
+                            </div>
+                        </div>
                     ))}
                 </div>
             </div>
@@ -57,7 +79,8 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-    fetchTopics: url => dispatch(topicsFetchData(url))
+    fetchTopics: url => dispatch(topicsFetchData(url)),
+    deleteTopic: (url, topics, id) => dispatch(topicDelete(url, topics, id))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Topics);

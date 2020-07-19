@@ -47,8 +47,10 @@ export function topics(state = [], action) {
     switch (action.type) {
         case 'TOPICS_FETCH_DATA_SUCCESS':
             return action.topics;
-
+        case 'TOPIC_DELETE':
+            return action.topics.filter(topic => topic.id !== action.id)
         default:
             return state;
     }
 }
+
