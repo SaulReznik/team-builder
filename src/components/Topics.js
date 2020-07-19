@@ -4,16 +4,49 @@ import { connect } from 'react-redux';
 import { topicsFetchData } from '../redux/actions';
 import { BASE_URL } from '../constants/baseUrl';
 
+const topicsUrl = `${BASE_URL}topics`;
 class Topics extends React.Component {
+    state = {
+        topic: '',
+    }
+
     componentDidMount() {
-        this.props.fetchTopics(`${BASE_URL}topics`)
+        this.props.fetchTopics(topicsUrl)
+        console.log(this.props.topics);
+    }
+
+    addTopic = () => {
+        const validData = JSON.stringify({title: this.state.topic});
+
+        fetch(topicsUrl, {
+            headers: {
+                'token': localStorage.getItem('userToken'),
+                'Content-Type': 'application/json'
+            },
+            method: 'POST',
+            body: validData
+        })
+        .then(res => res.json())
+        .then(json => console.log(json))
+    }
+
+    onTopicChange = e => {
+        this.setState({topic: e.target.value})
     }
 
     render() {
-        console.log(this.props.topics);
+        
         return(
             <div>
-                {this.props.topics.map(topics => <h1>{topics.title}</h1>)}
+                <div className="TopicInputContainer">
+                    <input onChange={e => this.onTopicChange(e)} value={this.state.topicInput} />
+                    <button onClick={this.addTopic}>Add Topic</button>
+                </div>
+                <div className="TopicsListContainer">
+                    {this.props.topics.map((topic, index) => (
+                        <h1 key={index}>{topic.title}</h1>
+                    ))}
+                </div>
             </div>
         )
     }
