@@ -414,3 +414,9 @@ input::-webkit-inner-spin-button {
   background-color: grey;
   cursor: not-allowed;
 }
+
+.ProjectsContainer {
+  top: 70px;
+  height: 100%;
+  position: relative;
+}

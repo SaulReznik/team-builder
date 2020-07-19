@@ -140,3 +140,52 @@ export function likeTopic(url, id, text) {
         dispatch(likeTopicSuccess(text));
     }
 }
+
+//----------------------------Projects------------------------//
+
+export function projectsFetchDataSuccess(projects) {
+    return {
+        type: 'PROJECTS_FETCH_DATA_SUCCESS',
+        projects
+    }
+}
+
+export function projectsFetchData(url) {
+    return dispatch => {
+
+        fetch(url, {
+            headers: {
+                'token': localStorage.getItem('userToken')
+            }
+        })
+            .then((response) => {
+                return response;
+            })
+            .then(response => response.json())
+            .then((json) => dispatch(projectsFetchDataSuccess(json)))
+    };
+}
+
+export function voteProjectSuccess(text) {
+    return {
+        type: 'VOTE_PROJECT',
+        text
+    }
+}
+
+export function voteProject(url, id, text) {
+    return dispatch => {
+        const validData = JSON.stringify({ type: text });
+        console.log(validData);
+        fetch(`${url}/${id}/voting`, {
+            headers: {
+                'Content-Type': 'application/json',
+                'token': localStorage.getItem('userToken')
+            },
+            method: 'POST',
+            body: validData
+        })
+
+        dispatch(voteProjectSuccess(text));
+    }
+}

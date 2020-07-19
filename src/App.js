@@ -8,6 +8,7 @@ import Login from './components/Login';
 import Registration from './components/Registration';
 import Account from './components/Account';
 import Topics from './components/Topics';
+import Projects from './components/Projects';
 import { companiesFetchData } from './redux/actions';
 
 import PrivateRoute from './components/HOC/PrivateRoute';
@@ -31,6 +32,7 @@ class App extends React.Component{
           <Route exact path="/registration" render={props => <Registration {...props} />} />
           <PrivateRoute exact path="/account" component={() => <Account />} />
           <PrivateRoute exact path="/topics" component={() => <Topics />}/>
+          <PrivateRoute exact path='/projects' component={() => <Projects />} />
           <Route render={()=> <h1>Sorry, the page is not found :(</h1>}/>
         </Switch>
       </div>

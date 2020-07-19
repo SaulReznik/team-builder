@@ -13,7 +13,6 @@ class Topics extends React.Component {
 
     componentDidMount() {
         this.props.fetchTopics(topicsUrl)
-        console.log(this.props.topics);
     }
 
     addTopic = () => {
@@ -54,16 +53,20 @@ class Topics extends React.Component {
             <div>
                 <Header />
                 <div className="TopicsContainer">
+
                     <div className="TopicInputContainer">
                         <input className="TopicInput" onChange={e => this.onTopicChange(e)} value={this.state.topic} />
                         <button className="TopicAddButton" onClick={this.addTopic}>Add Topic</button>
                     </div>
+
                     <div className="TopicsListContainer">
+
                         {this.props.topics.map((topic, index) => (
                             <div key={index} className='TopicContainer'>
                                 <div className='TopicTitleContainer'>
                                     <span>{topic.title}</span>
                                 </div>
+
                                 <div className='TopicsButtonsContainer'>
                                     <button
                                         onClick={e => this.onLike(e, topicsUrl, topic.id)}
@@ -79,8 +82,10 @@ class Topics extends React.Component {
                                         Delete
                                     </button>
                                 </div>
+                                
                             </div>
                         ))}
+
                     </div>
                 </div>
             </div>
