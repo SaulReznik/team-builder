@@ -8,12 +8,13 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 
 import './index.css';
 import App from './App';
-import { userLogin, companies, topics, dataHaveError, dataIsLoading } from './redux/reducers';
+import { userLogin, companies, topics, likeTopic, dataHaveError, dataIsLoading } from './redux/reducers';
 
 const rootReducer = combineReducers({
   companies,
   topics,
   userLogin,
+  likeTopic,
   dataHaveError,
   dataIsLoading
 })

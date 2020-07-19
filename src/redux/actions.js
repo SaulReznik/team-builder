@@ -116,3 +116,27 @@ export function topicDelete(url, topics, id) {
         dispatch(topicDeleteSuccess(topics, id));
     }
 }
+
+export function likeTopicSuccess(text) {
+    return {
+        type: 'LIKE_TOPIC',
+        text
+    }
+}
+
+export function likeTopic(url, id, text) {
+    return dispatch => {
+        const validData = JSON.stringify({type: text});
+        console.log(validData);
+        fetch(`${url}/${id}/voting`, {
+            headers: {
+                'Content-Type': 'application/json',
+                'token': localStorage.getItem('userToken')
+            },
+            method: 'POST',
+            body: validData
+        })
+
+        dispatch(likeTopicSuccess(text));
+    }
+}

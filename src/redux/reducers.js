@@ -54,3 +54,11 @@ export function topics(state = [], action) {
     }
 }
 
+export function likeTopic(state = '', action) {
+    switch (action.type) {
+        case 'LIKE_TOPIC':
+            return action.text
+        default: 
+            return state;
+    }
+}
