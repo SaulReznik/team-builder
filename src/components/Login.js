@@ -45,8 +45,6 @@ class Login extends React.Component {
         .then(() => this.props.history.push('/'))
     }
 
-
-
     //Getting the values, and if there's errors
     //Than that errors we will keep in our state to for further validation
     onInputChange = ({ name, value, error }) => {

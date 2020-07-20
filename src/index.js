@@ -15,6 +15,7 @@ import {
   likeTopic,
   projects,
   voteProject,
+  updateAccount,
   dataHaveError, 
   dataIsLoading 
 } from './redux/reducers';
@@ -26,6 +27,7 @@ const rootReducer = combineReducers({
   likeTopic,
   projects,
   voteProject,
+  updateAccount,
   dataHaveError,
   dataIsLoading
 })

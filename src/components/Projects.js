@@ -13,10 +13,6 @@ class Projects extends React.Component {
         this.props.fetchProjects(projectsUrl);
     }
 
-    componentDidUpdate() {
-        this.props.fetchProjects(projectsUrl);
-    }
-
     upvote = (e, projectsUrl, id) => {
         const upvoteDiv = e.target;
 
@@ -29,8 +25,8 @@ class Projects extends React.Component {
 
             this.props.voteProject(projectsUrl, id, 'unlike');
         }
-
-        this.forceUpdate()
+        
+        this.forceUpdate();
     }
 
     render() {
@@ -72,7 +68,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-    fetchProjects: url => dispatch(projectsFetchData(projectsUrl)),
+    fetchProjects: projectsUrl => dispatch(projectsFetchData(projectsUrl)),
     voteProject: (projectsUrl, id, text) => dispatch(voteProject(projectsUrl, id, text))
 });
 

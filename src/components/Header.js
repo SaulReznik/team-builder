@@ -2,8 +2,7 @@ import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import AccountModal from './AccountModal';
-import avatar from '../avatar.png';
+import avatarPlaceholder from '../avatar.png';
 import { userLogout } from '../redux/actions';
 
 import { BASE_URL } from '../constants/baseUrl';
@@ -11,6 +10,7 @@ import { BASE_URL } from '../constants/baseUrl';
 class Header extends React.Component{
     state = {
         isModalOpen: false,
+        avatar: JSON.parse(localStorage.getItem('user')).avatarUrl
     }
 
     toggleModal = () => {
@@ -34,14 +34,19 @@ class Header extends React.Component{
                         <button onClick={this.logout} className='LogoutLink' to='/login'>Logout</button>
                     </div>
                     <div className='AvatarHeaderContainer FlexCenter'>
-                        <img onClick={this.toggleModal} className='AvatarHeader' src={avatar} />
+                        <Link to='/account'>
+                            <img className='AvatarHeader' src={this.state.avatar || avatarPlaceholder} />
+                        </Link>
                     </div>
                 </header>
-                {this.state.isModalOpen ? <AccountModal /> : null}
             </div>
         )
     }
 }
+
+const mapStateToProps = state => ({
+    user: state.userLogin,
+})
 
 const mapDispatchToProps = dispatch => {
     return {
@@ -49,4 +54,4 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
-export default connect(null, mapDispatchToProps)(withRouter(Header));
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Header));

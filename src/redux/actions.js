@@ -176,7 +176,7 @@ export function voteProjectSuccess(text) {
 export function voteProject(url, id, text) {
     return dispatch => {
         const validData = JSON.stringify({ type: text });
-        console.log(validData);
+
         fetch(`${url}/${id}/voting`, {
             headers: {
                 'Content-Type': 'application/json',
@@ -185,7 +185,32 @@ export function voteProject(url, id, text) {
             method: 'POST',
             body: validData
         })
+            .then(() => dispatch(voteProjectSuccess(text)))
+            .then(() => dispatch(projectsFetchData(url)))
+    }
+}
 
-        dispatch(voteProjectSuccess(text));
+//----------------------------------Account update-------------------------------//
+
+export function updateAccountSuccess(data) {
+    return {
+        type: 'UPDATE_ACCOUNT',
+        data,
+    }
+}
+
+export function updateAccount(url, data) {
+    return dispatch => {
+        const validData = JSON.stringify(data);
+        console.log(validData);
+        fetch(url, {
+            headers: {
+                'Content-Type': 'application/json',
+                'token': localStorage.getItem('userToken')
+            },
+            method: 'PUT',
+            body: validData
+        })
+            .then(() => dispatch(updateAccountSuccess(data)))
     }
 }

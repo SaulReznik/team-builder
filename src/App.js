@@ -20,9 +20,9 @@ class App extends React.Component{
   }
 
   render() {
-    if (this.props.hasError) return <h1>Sorry, something went wrong...</h1>;
+    //if (this.props.hasError) return <h1>Sorry, something went wrong...</h1>;
 
-    if (this.props.isLoading) return <h1>Loading...</h1>;
+    //if (this.props.isLoading) return <h1>Loading...</h1>;
 
     return (
       <div className="App">
