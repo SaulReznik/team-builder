@@ -214,3 +214,28 @@ export function updateAccount(url, data) {
             .then(() => dispatch(updateAccountSuccess(data)))
     }
 }
+
+//---------------------------------Teams--------------------------------//
+
+export function teamsFetchDataSuccess(teams) {
+    return {
+        type: 'TEAMS_FETCH_DATA_SUCCESS',
+        teams
+    }
+}
+
+export function teamsFetchData(url) {
+    return dispatch => {
+
+        fetch(url, {
+            headers: {
+                'token': localStorage.getItem('userToken')
+            }
+        })
+            .then((response) => {
+                return response;
+            })
+            .then(response => response.json())
+            .then(json => dispatch(teamsFetchDataSuccess(json)))
+    };
+}

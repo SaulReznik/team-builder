@@ -26,12 +26,13 @@ class Header extends React.Component{
         return(
             <div className='HeaderWrapper'>
                 <header>
-                    <div>
-                        <Link to='/topics'>Topics</Link>
-                        <Link to='/projects'>Projects</Link>
+                    <div className="HeaderLinksContainer">
+                        <Link className='HeaderLinks' to='/'>Home</Link>
+                        <Link className='HeaderLinks' to='/topics'>Topics</Link>
+                        <Link className='HeaderLinks' to='/projects'>Projects</Link>
                     </div>
                     <div className='LogoutButtonContainer FlexCenter'>
-                        <button onClick={this.logout} className='LogoutLink' to='/login'>Logout</button>
+                        <button onClick={this.logout} className='LogoutButton' to='/login'>Logout</button>
                     </div>
                     <div className='AvatarHeaderContainer FlexCenter'>
                         <Link to='/account'>
