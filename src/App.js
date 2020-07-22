@@ -20,14 +20,14 @@ class App extends React.Component{
   }
 
   render() {
-    //if (this.props.hasError) return <h1>Sorry, something went wrong...</h1>;
+    if (this.props.hasError) return <h1>Sorry, something went wrong...</h1>;
 
-    //if (this.props.isLoading) return <h1>Loading...</h1>;
+    if (this.props.isLoading) return <h1>Loading...</h1>;
 
     return (
       <div className="App">
         <Switch>
-          <PrivateRoute exact path="/" component={() => <Home /> } />
+          <PrivateRoute exact path="/team-builder/" component={() => <Home /> } />
           <Route exact path="/login" render={props => <Login {...props} />} />
           <Route exact path="/registration" render={props => <Registration {...props} />} />
           <PrivateRoute exact path="/account" component={() => <Account />} />

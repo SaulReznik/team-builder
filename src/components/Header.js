@@ -27,7 +27,7 @@ class Header extends React.Component{
             <div className='HeaderWrapper'>
                 <header>
                     <div className="HeaderLinksContainer">
-                        <Link className='HeaderLinks' to='/'>Home</Link>
+                        <Link className='HeaderLinks' to='/team-builder/'>Home</Link>
                         <Link className='HeaderLinks' to='/topics'>Topics</Link>
                         <Link className='HeaderLinks' to='/projects'>Projects</Link>
                     </div>
