@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/team-builder/static/css/main.8c6ffc7d.chunk.css",
-    "main.js": "/team-builder/static/js/main.89cc690b.chunk.js",
-    "main.js.map": "/team-builder/static/js/main.89cc690b.chunk.js.map",
+    "main.js": "/team-builder/static/js/main.7a91a5ea.chunk.js",
+    "main.js.map": "/team-builder/static/js/main.7a91a5ea.chunk.js.map",
     "runtime-main.js": "/team-builder/static/js/runtime-main.613dfac9.js",
     "runtime-main.js.map": "/team-builder/static/js/runtime-main.613dfac9.js.map",
     "static/js/2.f918e4d0.chunk.js": "/team-builder/static/js/2.f918e4d0.chunk.js",
     "static/js/2.f918e4d0.chunk.js.map": "/team-builder/static/js/2.f918e4d0.chunk.js.map",
     "index.html": "/team-builder/index.html",
-    "precache-manifest.cb535a1a7b5ebcb404ce65ddf5632c00.js": "/team-builder/precache-manifest.cb535a1a7b5ebcb404ce65ddf5632c00.js",
+    "precache-manifest.5db4ac37003f48a84758c1e589ff5d1f.js": "/team-builder/precache-manifest.5db4ac37003f48a84758c1e589ff5d1f.js",
     "service-worker.js": "/team-builder/service-worker.js",
     "static/css/main.8c6ffc7d.chunk.css.map": "/team-builder/static/css/main.8c6ffc7d.chunk.css.map",
     "static/js/2.f918e4d0.chunk.js.LICENSE.txt": "/team-builder/static/js/2.f918e4d0.chunk.js.LICENSE.txt",
@@ -18,6 +18,6 @@
     "static/js/runtime-main.613dfac9.js",
     "static/js/2.f918e4d0.chunk.js",
     "static/css/main.8c6ffc7d.chunk.css",
-    "static/js/main.89cc690b.chunk.js"
+    "static/js/main.7a91a5ea.chunk.js"
   ]
 }
